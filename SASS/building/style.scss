@@ -1,0 +1,350 @@
+$primary-color: #ffe07b;
+$text-color: #32416f;
+$text-grey: rgba(153, 161, 184,1);
+@mixin flex(
+  $align: flex-start,
+  $justify: flex-start,
+  $wrap: nowrap,
+  $dir: row
+) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+  flex-direction: $dir;
+}
+@mixin shadow($x, $y, $blur, $scale, $color) {
+  box-shadow: $x $y $blur $scale $color;
+}
+@mixin size($width: $width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+@mixin font($fontWeight, $fontSize) {
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+}
+html {
+  font-size: 62.5%;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.4;
+  font-weight: 400;
+  color: $text-color;
+}
+a {
+  text-decoration: none;
+}
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1210px;
+  padding: 0 2rem;
+}
+.header {
+  padding-top: 4rem;
+  &__inner {
+    @include flex(center, space-between);
+  }
+  &__menu {
+    &-list {
+      @include flex(center);
+    }
+    &-item {
+      margin-left: 5rem;
+    }
+    &__item:last-child {
+      margin-right: 7rem;
+    }
+    &-link {
+      color: $text-color;
+      font-size: 1.6rem;
+      transition: color 0.25s linear, border 0.25s linear;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+.logo {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: $text-color;
+  text-decoration: none;
+  &__text {
+    color: $primary-color;
+  }
+}
+.banner {
+  color: $text-color;
+  padding: 15rem 0;
+  max-width: 80rem;
+  margin: 0 auto;
+  text-align: center;
+  &__heading {
+    font-weight: 700;
+    font-size: 7rem;
+  }
+  &__decs {
+    margin: 4rem;
+    font-weight: 300;
+    font-size: 2.3rem;
+  }
+  &__buttons {
+    @include flex(stretch, center);
+    .btn {
+      margin: 0 1rem;
+    }
+  }
+}
+.btn {
+  padding: 1rem 3rem;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  color: $text-color;
+  @include font(600, 2rem);
+  text-align: center;
+  border: 0;
+  background-color: transparent;
+  transition: color 0.25s linear;
+  &--border {
+    border: 1px solid currentColor;
+  }
+  &--rounded {
+    border-radius: 5rem;
+  }
+  &--primary {
+    border: none;
+    background-color: $primary-color;
+    &.has-shadow {
+      box-shadow: 0 10px 35px -5px $primary-color;
+    }
+  }
+  &--bold {
+    font-weight: 5500;
+  }
+}
+.category {
+  margin-bottom: 18rem;
+  &__list {
+    @include flex(stretch, space-between, wrap);
+  }
+  &__item {
+    width: calc(25% - 22.5px);
+    border: 0px solid red;
+    padding: 1em 2em 2.5em;
+    background-color: #ffffff;
+    border-radius: 2rem;
+    height: 40rem;
+    max-height: 40rem;
+    @include flex(flex-start, stretch, nowrap, column);
+    &:first-child {
+      @include shadow(10px, 10px, 35px, -5px, #efc6d9);
+    }
+    &:nth-child(2) {
+      @include shadow(10px, 10px, 35px, -5px, #b08f81);
+    }
+    &:nth-child(3) {
+      @include shadow(10px, 10px, 35px, -5px, #00b4f1);
+    }
+    &:last-child {
+      @include shadow(10px, 10px, 35px, -5px, #f9fca6);
+    }
+  }
+  &__img {
+    border-radius: 2.5rem;
+    @include size(100%, 23rem);
+    object-fit: cover;
+  }
+  &__title {
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 3.5rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 20rem;
+  }
+  &__details {
+    font-size: 1.35rem;
+    margin-top: auto;
+    color: $text-grey;
+  }
+}
+.feature {
+  &__item:nth-child(odd) {
+    margin-bottom: 20rem;
+    @include flex(flex-start, flex-start, nowrap, row);
+    .feature__img {
+      @include size(50%, 70rem);
+      margin-right: 10rem;
+    }
+  }
+  &__item:nth-child(even) {
+    margin-bottom: 20rem;
+    @include flex(flex-start, flex-start, nowrap, row-reverse);
+    .feature__img {
+      margin-left: 10rem;
+    }
+    .feature__info-item{
+        margin:5rem 4rem;
+    }
+  }
+  &__info {
+    padding-top: 10rem;
+    max-width: 50%;
+    &-title {
+      @include font(600, 3.5rem);
+      margin-bottom: 2rem;
+    }
+    &-decs {
+      @include font(300, 1.7rem);
+      max-width: 44rem;
+      line-height: 2.5rem;
+      color: $text-grey;
+      margin-bottom: 4rem;
+    }
+    &-item {
+      max-width: 45rem;
+      margin-bottom: 4rem;
+      @include font(600, 1.7rem);
+
+      &--circle {
+        position: relative;
+        &:before {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            content: "";
+            margin-right: 1.5rem;
+            left: -4rem;
+            background-color: rgba(255,106,223,1);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 4rem;
+        }
+        &:nth-child(2)::before{
+            background-color: rgba(146,250,60,1);
+        }
+        &:nth-child(3)::before{
+            background-color: rgba(30,192,224,1);
+        }
+        &:nth-child(4)::before{
+            background-color: rgba(255,137,156,1);
+        }
+      }
+     
+    }
+  }
+  &__item:first-child {
+    .feature__info-item {
+      text-decoration: underline;
+    }
+  }
+  &__item:nth-child(3){
+      .feature__info-list{
+          margin-top: 10rem;
+          max-width: 42rem;
+          @include flex(flex-start,space-between ,wrap,row )
+    }
+    .feature__info-item{
+        @include size(18rem,16.5rem );
+        position: relative;
+        &::before{
+            content: "\f19c";
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            position: absolute;
+            top: -5rem;
+            font-size: 3rem;
+        }
+        &:nth-child(2):before{
+            content: "\f087";
+        }
+        &:nth-child(3):before{
+            content: "\f132";
+        }
+        &:nth-child(4):before{
+            content: "\f1fc";
+        }
+        &::after{
+            position: absolute;
+            top: 6rem;
+            left: 0;
+            content: "Lorem ipsum dolor sit amet consectetur.";
+            @include font(400,1.5rem );
+            color: $text-grey;
+        }
+    }
+  }
+}
+.partner{
+    &__container{
+        margin:0 30rem;
+    }
+    &__title{
+        @include font(600,3rem );
+        text-align: center;
+        border-bottom: 2px solid $text-color;
+        height: 12rem;
+    }
+    &__list{
+        margin-top:6rem;
+        @include flex(flex-start,space-between ,nowrap ,row );  
+    }
+}
+.bottom-banner{
+    margin:20rem 0 15rem;
+    &__container{
+        margin:0 25rem;
+    }
+    &__title{
+        @include font(600,4rem );
+    }
+    &__text{
+        margin:3rem 0 5rem;
+        text-align: center;
+        @include font(600,2.5rem );
+    }
+    &__cards{
+        @include flex(stretch,space-between,wrap,row );
+    }
+    &__item{
+        width: calc(25% - 22.5px);
+    }
+}
+.footer{
+    margin-bottom: 5rem;
+    &__row{
+        border-top:3px solid $text-color;
+        border-bottom:2px solid $text-grey;
+        padding:5rem 0;
+        @include flex(stretch ,space-between ,wrap,row );
+    }
+    &__item{
+        @include font(600,1.5rem );
+        margin:2rem 0;
+    }
+    &__license{
+        margin: 2rem 0 10rem;
+        float: right;
+        @include font(300,1.3rem )
+    }
+}

@@ -1,0 +1,70 @@
+// -------------variable---------------
+$width: 10em;
+$font: "arial";
+$colorbg1: rgb(224, 56, 56)228, 27, 27);
+$key: background-color;
+$colorbg2: linear-gradient(90deg, red, yellow);
+@mixin box-form($w, $h, $bg, $br) {
+  width: $w;
+  height: $h;
+  background: $bg;
+  border-radius: $br;
+}
+%box0 {
+  width: 300px;
+  height: 100px;
+  #{$key}: $colorbg1;
+  line-height: 100px;
+  border-radius: 10px;
+  text-align: center;
+}
+// -------------variable---------------
+
+html body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.box {
+  display: flex;
+}
+.box1 {
+   @include box-form(400px, 100px, $colorbg1, 10px);
+   text-align: center;
+  &-text {
+    font: {
+      family: $font;
+      size: 1.5em;
+      weight: bold;
+    }
+  }
+ 
+}
+.box2 {
+  text-align: center;
+  @include box-form(400px, 200px, $colorbg2, 20px);
+  &-text { 
+    font: {
+      family: $font;
+      size: 1.5em;
+      weight: bold;
+    }
+  }
+}
+.box3 {
+  @extend %box0;
+  &-text {
+    @extend .box2-text;
+  }
+}
+.box4 {
+  @extend .box3 ;
+  &-text{
+    @extend .box2-text;
+  }
+}
+  .box{
+   color:#fff;
+    font-size: xx-large;
+  }
